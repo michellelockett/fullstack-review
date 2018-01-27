@@ -2,25 +2,42 @@ const express = require('express');
 const gh = require('../helpers/github');
 const bodyParser = require('body-parser');
 const db = require('../database/index');
+const cors = require('cors');
 let app = express();
 
 
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//app.use(cors);
+
+
+app.options('/repos', cors());
 
 app.post('/repos', function (req, res) {
 
   var username = req.body.username;
+  
+  var repos = gh.getReposByUsername(username, function(error, repos) {  
+  	if (error) {
+  		console.log(error);
+  		res.send({error: error, message: "username does not exist or user has no repos"})
+  	} 
 
-  var repos = gh.getReposByUsername(username, function(repos) {  
-  	db.save(repos, () => {
-  		res.send({message: 'successfully added repos from ' + username});
-  	}); 	
+  	if (repos.length > 0) {
+  		console.log(repos);
+  		db.save(repos, () => {
+  		    res.send({message: 'successfully added repos from ' + username});
+  	    }); 
+  	} else {
+  		res.send("User has no repos");
+  	}	
   });
 });
 
 app.get('/repos', function (req, res) {
+  console.log('received get request')
   
   db.getTop25((repos) => res.send(repos));
 

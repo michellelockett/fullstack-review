@@ -11,14 +11,15 @@ let repoSchema = mongoose.Schema({
    repoID: { type: Number, unique: true, required: true },
    name: String,
    forks: Number,
-   repoURL: String
+   repoURL: String,
+   username: String
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (repos, callback) => {
 	repos.forEach(repo => {
-		var current = new Repo({ repoID: repo.id , name: repo.name, forks: repo.forks, repoURL: repo.html_url });
+		var current = new Repo({ repoID: repo.id , name: repo.name, forks: repo.forks, repoURL: repo.html_url, username: repo.owner.login});
 		current.save((err, currentRepo) => {
 			if (err) {
 				console.log(err)

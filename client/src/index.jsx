@@ -11,11 +11,41 @@ class App extends React.Component {
       repos: []
     }
 
+    this.get25();
   }
 
-  search (term) {
-    console.log(`${term} was searched`);
-    // TODO
+  search (user) {
+    var data = { "username" : user };
+    console.log(`${user} was searched`);
+    $.ajax({
+      url: "http://localhost:1128/repos",
+      method: 'POST',
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      dataType: "json",
+      error: (err) => {
+        console.log(err);
+      },
+      success: (response) => {
+        this.get25();
+      }
+    });
+  }
+
+  get25() {
+      $.ajax({
+      url: "http://localhost:1128/repos",
+      method: 'GET',
+      dataType: 'json',
+      error: (err) => {
+        console.log(err);
+      },
+      success: (response) => {
+        console.log(response);
+        this.setState({'repos': response});
+      }
+    });
+
   }
 
   render () {

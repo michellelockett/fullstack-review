@@ -13,10 +13,11 @@ let getReposByUsername = (username, callback) => {
 
   request(options, function (error, response, body) {
     if (error) {
-      callback(err)
+      callback(error, null)
+      return;
     } else {
       var parsed = JSON.parse(body);
-      callback(parsed);
+      callback(null, parsed);
     }
 });
 
