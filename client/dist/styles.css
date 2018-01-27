@@ -1,0 +1,20 @@
+.forks {
+  float: right;
+}
+
+h1 {
+  text-align: center;
+}
+
+.row {
+  margin-top: 2em;
+}
+
+.container {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+body {
+  background-color: lightgrey;
+}

@@ -37,7 +37,6 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  console.log('received get request')
   
   db.getTop25((repos) => res.send(repos));
 

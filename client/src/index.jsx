@@ -51,8 +51,12 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
+      <div className="row"> 
+        <h3 className="col-md"> Your top 25 Repos - the forking best of them! </h3>
+        <Search className="col-md" onSearch={this.search.bind(this)}/> 
+      </div>
       <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
+     
     </div>)
   }
 }
