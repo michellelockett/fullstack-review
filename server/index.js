@@ -3,7 +3,7 @@ const gh = require('../helpers/github');
 const bodyParser = require('body-parser');
 const db = require('../database/index');
 const cors = require('cors');
-require('dotenv').config()
+require('dotenv').config();
 let app = express();
 
 

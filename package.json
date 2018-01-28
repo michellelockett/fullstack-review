@@ -7,7 +7,6 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "post-install": "webpack"
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -32,5 +31,9 @@
     "react-dom": "^15.4.2",
     "request": "^2.81.0",
     "webpack": "^2.2.1"
+  },
+  "engines": {
+    "node": "9.4.0",
+    "npm": "5.6.0"
   }
 }
