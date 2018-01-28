@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+var databaseURL = process.env.DATABASE_URL || 'mongodb://localhost/fetcher'
+mongoose.connect(databaseURL);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

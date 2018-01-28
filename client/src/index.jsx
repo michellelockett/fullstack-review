@@ -18,7 +18,7 @@ class App extends React.Component {
     var data = { "username" : user };
     console.log(`${user} was searched`);
     $.ajax({
-      url: "http://localhost:1128/repos",
+      url: "/repos",
       method: 'POST',
       contentType: "application/json",
       data: JSON.stringify(data),
@@ -34,7 +34,7 @@ class App extends React.Component {
 
   get25() {
       $.ajax({
-      url: "http://localhost:1128/repos",
+      url: "/repos",
       method: 'GET',
       dataType: 'json',
       error: (err) => {
