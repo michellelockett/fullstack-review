@@ -3,7 +3,9 @@ const gh = require('../helpers/github');
 const bodyParser = require('body-parser');
 const db = require('../database/index');
 const cors = require('cors');
+require('dotenv').config()
 let app = express();
+
 
 
 app.use(express.static(__dirname + '/../client/dist'));
